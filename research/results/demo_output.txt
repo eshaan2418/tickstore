@@ -1,0 +1,8 @@
+== AAPL 2019-01-30, first five 1-minute bars (Nasdaq prints)
+  09:30  O 163.24  H 163.33  L 162.49  C 162.59  vol  172,445  vwap 162.8190
+  09:31  O 162.59  H 162.65  L 161.80  C 162.00  vol  129,694  vwap 162.1255
+  09:32  O 162.00  H 162.69  L 161.93  C 162.43  vol  107,101  vwap 162.4067
+  09:33  O 162.40  H 162.54  L 161.80  C 161.82  vol   86,749  vwap 162.0681
+  09:34  O 161.83  H 161.88  L 161.66  C 161.68  vol  115,351  vwap 161.7437
+== AAPL trades as-of joined to the prevailing quote (regular session)
+  trades 95,735  Lee-Ready buys 49,421  sells 46,314  agreement with ITCH aggressor 88.4%  effective spread 0.91 bps

@@ -1,0 +1,84 @@
+{
+  "db_bytes": 114462602,
+  "queries": [
+    {
+      "query": "range_count_1h",
+      "runs_ms": [
+        1.858,
+        1.598,
+        1.449,
+        1.571,
+        2.222
+      ],
+      "median_ms": 1.598,
+      "result": 14328
+    },
+    {
+      "query": "bars_1min",
+      "runs_ms": [
+        9.848,
+        9.423,
+        9.049,
+        9.134,
+        9.694
+      ],
+      "median_ms": 9.423,
+      "result": {
+        "bars": 390,
+        "volume": 10714400
+      }
+    },
+    {
+      "query": "asof_join",
+      "runs_ms": [
+        65.45,
+        60.152,
+        62.95,
+        60.076,
+        66.01
+      ],
+      "median_ms": 62.95,
+      "result": {
+        "trades": 95735,
+        "matched_with_quote": 95735,
+        "lee_ready_buys": 49421,
+        "lee_ready_sells": 46314,
+        "agreement_with_feed_aggressor": 0.8844205358541808,
+        "effective_spread_bps_volume_weighted": 0.9147848035048276,
+        "quoted_spread_bps_trade_weighted": 1.6705686797069368,
+        "checksum": 156293437200
+      }
+    },
+    {
+      "query": "market_vwap_all_symbols",
+      "runs_ms": [
+        1999.94,
+        2178.989,
+        2078.453,
+        2168.186,
+        2271.362
+      ],
+      "median_ms": 2168.186,
+      "result": {
+        "symbols": 7486,
+        "volume": 1262985259
+      }
+    },
+    {
+      "query": "market_vwap_all_symbols_8_workers",
+      "runs_ms": [
+        1945.458,
+        1993.044,
+        1985.144,
+        1982.977,
+        1976.375
+      ],
+      "median_ms": 1982.977,
+      "result": {
+        "symbols": 7486,
+        "volume": 1262985259
+      }
+    }
+  ],
+  "symbol": "AAPL"
+}

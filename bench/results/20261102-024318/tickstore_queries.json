@@ -1,0 +1,115 @@
+{
+  "db_bytes": 114462602,
+  "pack_bytes": 114626216,
+  "queries": [
+    {
+      "query": "range_count_1h",
+      "runs_ms": [
+        1.061,
+        0.882,
+        0.85,
+        0.817,
+        1.104
+      ],
+      "median_ms": 0.882,
+      "result": 14328
+    },
+    {
+      "query": "bars_1min",
+      "runs_ms": [
+        5.27,
+        4.728,
+        5.201,
+        4.584,
+        4.952
+      ],
+      "median_ms": 4.952,
+      "result": {
+        "bars": 390,
+        "volume": 10714400
+      }
+    },
+    {
+      "query": "asof_join",
+      "runs_ms": [
+        36.857,
+        33.26,
+        34.411,
+        33.657,
+        33.487
+      ],
+      "median_ms": 33.657,
+      "result": {
+        "trades": 95735,
+        "matched_with_quote": 95735,
+        "lee_ready_buys": 49421,
+        "lee_ready_sells": 46314,
+        "agreement_with_feed_aggressor": 0.8844205358541808,
+        "effective_spread_bps_volume_weighted": 0.9147848035048276,
+        "quoted_spread_bps_trade_weighted": 1.6705686797069368,
+        "checksum": 156293437200
+      }
+    },
+    {
+      "query": "market_vwap_all_symbols",
+      "runs_ms": [
+        886.569,
+        885.625,
+        873.007,
+        893.605,
+        911.864
+      ],
+      "median_ms": 886.569,
+      "result": {
+        "symbols": 7486,
+        "volume": 1262985259
+      }
+    },
+    {
+      "query": "market_vwap_all_symbols_8_workers",
+      "runs_ms": [
+        887.964,
+        1017.283,
+        1033.63,
+        988.042,
+        986.393
+      ],
+      "median_ms": 988.042,
+      "result": {
+        "symbols": 7486,
+        "volume": 1262985259
+      }
+    },
+    {
+      "query": "market_vwap_all_symbols_pack",
+      "runs_ms": [
+        629.864,
+        603.017,
+        590.861,
+        585.367,
+        585.631
+      ],
+      "median_ms": 590.861,
+      "result": {
+        "symbols": 7486,
+        "volume": 1262985259
+      }
+    },
+    {
+      "query": "market_vwap_all_symbols_pack_8_workers",
+      "runs_ms": [
+        170.617,
+        168.792,
+        169.328,
+        161.646,
+        157.842
+      ],
+      "median_ms": 168.792,
+      "result": {
+        "symbols": 7486,
+        "volume": 1262985259
+      }
+    }
+  ],
+  "symbol": "AAPL"
+}

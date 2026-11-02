@@ -1,0 +1,14 @@
+{
+  "compression_ratio_vs_raw_int64": 6.266598971775951,
+  "messages_per_sec": 1306311.6730923238,
+  "seconds": 281.989850958,
+  "stats": {
+    "messages": 368366634,
+    "trades": 9580917,
+    "quotes": 10267547,
+    "symbols_with_trades": 7538,
+    "bytes_written": 114462602,
+    "raw_row_bytes": 717291224,
+    "elapsed_ns": 281989850958
+  }
+}

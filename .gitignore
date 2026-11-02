@@ -1,0 +1,5 @@
+bin/
+NOTES.md
+*.tks
+*.tmp
+.DS_Store

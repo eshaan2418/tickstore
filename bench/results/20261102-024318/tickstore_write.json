@@ -1,0 +1,19 @@
+{
+  "partitions": 7538,
+  "raw_nosync": {
+    "bytes": 94664744,
+    "median_s": 1.770730791,
+    "rows_per_sec": 5410713.502411785
+  },
+  "rows": 9580917,
+  "zstd_fsync": {
+    "bytes": 61451488,
+    "median_s": 31.533932458,
+    "rows_per_sec": 303828.80450323824
+  },
+  "zstd_nosync": {
+    "bytes": 61451488,
+    "median_s": 2.3339119999999998,
+    "rows_per_sec": 4105089.2235868364
+  }
+}
