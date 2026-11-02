@@ -181,7 +181,7 @@ func export(dir, out string) error {
 		if table == "quotes" {
 			cols = store.QuoteColumns
 		}
-		fmt.Fprintf(w, "symbol,%s\n", strings.Join(cols, ","))
+		_, _ = fmt.Fprintf(w, "symbol,%s\n", strings.Join(cols, ","))
 		files, _ := filepath.Glob(filepath.Join(dir, table, "*.tks"))
 		sort.Strings(files)
 		var line []byte
@@ -249,7 +249,7 @@ func bench(dir, sym string, runs int, t0, t1 int64) map[string]any {
 	// 1. Range count: one symbol, one hour (10:00-11:00), timestamps only.
 	res = append(res, timeit("range_count_1h", runs, func() any {
 		r := open(dir, "trades", sym)
-		defer r.Close()
+		defer func() { _ = r.Close() }()
 		var n int
 		_ = r.Scan(hm("10:00"), hm("11:00"), []int{0}, func(b *store.Batch) error { n += b.Hi - b.Lo; return nil })
 		return n
@@ -257,7 +257,7 @@ func bench(dir, sym string, runs int, t0, t1 int64) map[string]any {
 	// 2. 1-minute OHLCV + VWAP bars for the regular session.
 	res = append(res, timeit("bars_1min", runs, func() any {
 		r := open(dir, "trades", sym)
-		defer r.Close()
+		defer func() { _ = r.Close() }()
 		b, _ := query.Bars(r, t0, t1, int64(time.Minute))
 		var vol int64
 		for _, x := range b {
@@ -268,8 +268,8 @@ func bench(dir, sym string, runs int, t0, t1 int64) map[string]any {
 	// 3. As-of join of trades to quotes (Lee-Ready).
 	res = append(res, timeit("asof_join", runs, func() any {
 		tr, q := open(dir, "trades", sym), open(dir, "quotes", sym)
-		defer tr.Close()
-		defer q.Close()
+		defer func() { _ = tr.Close() }()
+		defer func() { _ = q.Close() }()
 		st, _ := query.AsOf(tr, q, t0, t1)
 		return st
 	}))
@@ -321,7 +321,7 @@ func bench(dir, sym string, runs int, t0, t1 int64) map[string]any {
 			if err != nil {
 				fail(err)
 			}
-			defer p.Close()
+			defer func() { _ = p.Close() }()
 			type part struct {
 				n   int
 				vol int64
@@ -379,7 +379,7 @@ func benchWrite(dir string, runs int) map[string]any {
 		cols [][]int64
 	}
 	files, _ := filepath.Glob(filepath.Join(dir, "trades", "*.tks"))
-	var parts []part
+	parts := make([]part, 0, len(files))
 	var rows int64
 	for _, f := range files {
 		r, err := store.Open(f)

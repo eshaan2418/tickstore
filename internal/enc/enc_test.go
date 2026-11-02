@@ -20,7 +20,7 @@ func TestTimestampsRoundTrip(t *testing.T) {
 		case 2:
 			cur += int64(rng.Intn(10_000_000))
 		default:
-			cur += int64(rng.Int63n(1 << 40))
+			cur += rng.Int63n(1 << 40)
 		}
 		ts = append(ts, cur)
 	}
@@ -57,7 +57,7 @@ func TestDeltaIntsAndFloatsRoundTrip(t *testing.T) {
 			t.Fatalf("int %d", i)
 		}
 	}
-	fl := []float64{0, -0.0, 1.5, math.Inf(1), math.NaN(), math.SmallestNonzeroFloat64, math.MaxFloat64}
+	fl := []float64{0, math.Copysign(0, -1), 1.5, math.Inf(1), math.NaN(), math.SmallestNonzeroFloat64, math.MaxFloat64}
 	v := 165.0
 	for i := 0; i < 50_000; i++ {
 		v += float64(rng.Intn(5)-2) * 0.01

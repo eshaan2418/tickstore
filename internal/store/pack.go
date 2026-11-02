@@ -32,11 +32,11 @@ func WritePack(dir, out string) (int, error) {
 	for _, p := range files {
 		b, err := os.ReadFile(p)
 		if err != nil {
-			f.Close()
+			_ = f.Close()
 			return 0, err
 		}
 		if _, err := f.Write(b); err != nil {
-			f.Close()
+			_ = f.Close()
 			return 0, err
 		}
 		name := strings.TrimSuffix(filepath.Base(p), ".tks")
@@ -50,11 +50,11 @@ func WritePack(dir, out string) (int, error) {
 	idx = binary.LittleEndian.AppendUint64(idx, off)
 	idx = append(idx, "TKSP"...)
 	if _, err := f.Write(idx); err != nil {
-		f.Close()
+		_ = f.Close()
 		return 0, err
 	}
 	if err := f.Sync(); err != nil {
-		f.Close()
+		_ = f.Close()
 		return 0, err
 	}
 	if err := f.Close(); err != nil {
@@ -76,7 +76,7 @@ func OpenPack(path string) (*Pack, error) {
 	if err != nil {
 		return nil, err
 	}
-	defer f.Close()
+	defer func() { _ = f.Close() }()
 	st, err := f.Stat()
 	if err != nil || st.Size() < 16 {
 		return nil, ErrFormat

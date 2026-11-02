@@ -170,12 +170,12 @@ func (w *Writer) Close() error {
 		return err
 	}
 	if _, err := f.Write(w.out); err != nil {
-		f.Close()
+		_ = f.Close()
 		return err
 	}
 	if !w.NoSync {
 		if err := f.Sync(); err != nil {
-			f.Close()
+			_ = f.Close()
 			return err
 		}
 	}
@@ -202,7 +202,7 @@ func Open(path string) (*Reader, error) {
 	if err != nil {
 		return nil, err
 	}
-	defer f.Close()
+	defer func() { _ = f.Close() }()
 	st, err := f.Stat()
 	if err != nil {
 		return nil, err
@@ -327,7 +327,7 @@ func (r *Reader) chunk(off [2]int, buf *[]byte) ([]byte, error) {
 	case codecZstd:
 		out, err := zdec.DecodeAll(b[1:], (*buf)[:0])
 		if err != nil {
-			return nil, fmt.Errorf("%w: %v", ErrFormat, err)
+			return nil, fmt.Errorf("%w: %w", ErrFormat, err)
 		}
 		*buf = out
 		return out, nil

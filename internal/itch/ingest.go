@@ -91,14 +91,14 @@ func Ingest(path, dir string, quoteSymbols []string, maxMsgs int64) (Stats, erro
 	if err != nil {
 		return Stats{}, err
 	}
-	defer f.Close()
+	defer func() { _ = f.Close() }()
 	var r io.Reader = bufio.NewReaderSize(f, 4<<20)
 	if strings.HasSuffix(path, ".gz") {
 		gz, err := gzip.NewReader(r)
 		if err != nil {
 			return Stats{}, err
 		}
-		defer gz.Close()
+		defer func() { _ = gz.Close() }()
 		r = bufio.NewReaderSize(gz, 4<<20)
 	}
 	br := r.(*bufio.Reader)
